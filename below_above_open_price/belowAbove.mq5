@@ -57,6 +57,34 @@ void calculateFlag(double openPrice, double currentPrice, double & counter, bool
    }
 }
 
+bool isNewBar() {
+   
+   static ENUM_TIMEFRAMES periodName = Period();
+   ENUM_TIMEFRAMES thisPeriodName = Period();
+   static double totalBar = 0;
+   
+   if(thisPeriodName != periodName) {
+      // period changed
+      // reset total bar count
+      totalBar = 0;
+   }
+   
+   datetime theTimes[];
+   CopyTime(NULL,NULL,0,1,theTimes);
+   
+   double currentBar = MathFloor( theTimes[0] / PeriodSeconds());
+   if(currentBar > totalBar) {
+      // new bar
+      totalBar = currentBar;
+      return true;
+   }
+   return false;
+}
+
+void calculateBasket(int & theBasket[], const double &close[]) {
+   
+}
+
 int OnCalculate(const int rates_total,
                 const int prev_calculated,
                 const datetime &time[],
@@ -74,11 +102,38 @@ int OnCalculate(const int rates_total,
    double openPrice = getCurrentBarOpenPrice(0);
    
    // calculate counter for current bar
-   calculateFlag(openPrice,close[0],belowAboveBuffer[0], isEqualAboveCurrentOpen);
+   //calculateFlag(openPrice,close[0],belowAboveBuffer[0], isEqualAboveCurrentOpen);
    
    // calculate counter for previous bar
-   calculateFlag(open[1],close[0],belowAboveBuffer[1], isEqualAbovePreviousOpen);
+   //calculateFlag(open[1],close[0],belowAboveBuffer[1], isEqualAbovePreviousOpen);
    //--- return value of prev_calculated for next call
+   
+   static int basket[];
+   // basket[0]:  +50 * Point()
+   // basket[1]:  +30 * Point()
+   // basket[2]:  -30 * Point()
+   // basket[3]:  -50 * Point()
+   
+   if(isNewBar()) {
+      // 1. print the distribution 
+      // 2. reset the arrays
+      printf("+50 * Point(): %G", basket[0]);
+      printf("+30 * Point(): %G", basket[1]);
+      printf("-30 * Point(): %G", basket[2]);
+      printf("+50 * Point(): %G", basket[3]);
+      printf("---------------  newbar  ------------");
+      
+      basket[0] = 0;
+      basket[1] = 0;
+      basket[2] = 0;
+      basket[3] = 0;      
+   }
+   
+   calculateBasket(basket, close);
+   
+   
+   
+   
    return(rates_total);
 }
 
