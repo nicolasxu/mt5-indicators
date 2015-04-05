@@ -56,10 +56,7 @@ int OnCalculate(const int rates_total,
                 const double &close[],
                 const long &tick_volume[],
                 const long &volume[],
-                const int &spread[])
-  {
-//---
-//   printf("prev_calculated: %d, rates_total: %d ", prev_calculated, rates_total);
+                const int &spread[]) {
    
    
    if(rates_total < minRequiredBarNumber) {
@@ -81,21 +78,20 @@ int OnCalculate(const int rates_total,
    for(int i=0;i<rates_total - prev_calculated - 1;i++) {
       
       diffBuffer[i] =  jjmaBuffer[i] - jjmaBuffer[i+1];
-      //printf("diffBuffer[%d]: %G", i,diffBuffer[i]);
-      //printf(emaBuffer[i]);
+    
+    
    }    
     
    
    
 //--- return value of prev_calculated for next call
    return(rates_total);
-  }
-//+------------------------------------------------------------------+
-//| Timer function                                                   |
-//+------------------------------------------------------------------+
-void OnTimer()
-  {
-//---
+}
+
+void OnTimer() {
+
+
    
-  }
-//+------------------------------------------------------------------+
+}
+
+

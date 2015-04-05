@@ -1,0 +1,1 @@
+# how many time the price is cross the open price during one trading period, e.g. a day
