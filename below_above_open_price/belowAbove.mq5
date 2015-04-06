@@ -81,7 +81,25 @@ bool isNewBar() {
    return false;
 }
 
-void calculateBasket(int & theBasket[], const double &close[]) {
+void calculateBasket(double & theBasket[], const double &close[]) {
+   double openPrice = getCurrentBarOpenPrice(0);
+   double currentPrice = close[0];
+   //printf("openPrice: %G", openPrice);
+   //printf("currentPrice: %G", currentPrice);
+   if((currentPrice > openPrice) && (currentPrice < openPrice + 30 * Point())){
+      theBasket[1] = theBasket[1] + 1;
+      //printf("basket[1] add 1: %G", theBasket[1]);    
+   }
+   if((currentPrice < openPrice) && (currentPrice > openPrice - 30 * Point())) {
+      theBasket[2] = theBasket[2] + 1;
+   }
+   if( (currentPrice >= openPrice + 30 * Point()) && (currentPrice <= openPrice + 50 * Point())) {
+      theBasket[0] =  theBasket[0] + 1;
+   }
+   if( (currentPrice <= openPrice - 30 * Point()) && (currentPrice >= openPrice - 50 * Point())) {
+      theBasket[3] =  theBasket[3] + 1;
+   }
+   
    
 }
 
@@ -108,7 +126,7 @@ int OnCalculate(const int rates_total,
    //calculateFlag(open[1],close[0],belowAboveBuffer[1], isEqualAbovePreviousOpen);
    //--- return value of prev_calculated for next call
    
-   static int basket[];
+   static double basket[4];
    // basket[0]:  +50 * Point()
    // basket[1]:  +30 * Point()
    // basket[2]:  -30 * Point()
