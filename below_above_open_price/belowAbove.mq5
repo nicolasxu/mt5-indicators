@@ -84,6 +84,7 @@ bool isNewBar() {
 void calculateBasket(double & theBasket[], const double &close[]) {
    double openPrice = getCurrentBarOpenPrice(0);
    double currentPrice = close[0];
+   static bool isAbove = false; 
    //printf("openPrice: %G", openPrice);
    //printf("currentPrice: %G", currentPrice);
    if((currentPrice > openPrice) && (currentPrice < openPrice + 30 * Point())){
