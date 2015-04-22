@@ -35,6 +35,7 @@ int OnInit(){
    ArraySetAsSeries(belowAboveBuffer,true);
    
    PlotIndexSetDouble(0,PLOT_EMPTY_VALUE,0); 
+   EventSetTimer(60);
    
    return(INIT_SUCCEEDED);
 }
@@ -157,6 +158,13 @@ int OnCalculate(const int rates_total,
 }
 
 void OnTimer() {
+   
+   
+   MqlTick tick;
+   SymbolInfoTick(Symbol(),tick);
+   printf("tick.time is: %d", tick.time);
+   printf("tick.volume is: %d", tick.volume);
+ 
 
    
 }

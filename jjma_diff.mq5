@@ -7,8 +7,8 @@
 #property link      "https://www.noWebsite5.com"
 #property version   "1.00"
 #property indicator_separate_window
-#property indicator_minimum -0.01
-#property indicator_maximum 0.01
+#property indicator_minimum -0.001
+#property indicator_maximum 0.001
 #property indicator_buffers 1
 #property indicator_plots   1
 #property indicator_type1   DRAW_HISTOGRAM
@@ -70,7 +70,7 @@ int OnCalculate(const int rates_total,
    ArraySetAsSeries(low,true);
    ArraySetAsSeries(time,true);   
    
-   
+   printf("onCalculate triggered...");
    
     CopyBuffer(jjmaHandle,0, 0, rates_total - prev_calculated , jjmaBuffer);
     

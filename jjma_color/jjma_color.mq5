@@ -33,7 +33,7 @@ int OnInit() {
    SetIndexBuffer(0,indicatorDataBuffer,INDICATOR_DATA);
    SetIndexBuffer(1,indicatorColorBuffer,INDICATOR_COLOR_INDEX);  
    
-   jjmaHandle = iCustom(NULL,0,"Expert_Indicators\\jjma", 5, -100, PRICE_OPEN,0,0);              
+   jjmaHandle = iCustom(NULL,0,"Expert_Indicators\\jjma", 7, -100, PRICE_OPEN,0,0);              
    printf("jjma Handle: %d", jjmaHandle);
    return(INIT_SUCCEEDED);
 }

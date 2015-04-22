@@ -36,10 +36,10 @@ int OnInit() {
 
    ema20Handle = iMA(  NULL,    // symbol string
                           0,    // timeframe
-                         7,    // ma period
+                         20,    // ma period
                           0,    // ma shift
                    MODE_EMA,    // Smooth method
-                PRICE_OPEN     // Calculating on Close prices
+                PRICE_CLOSE     // Calculating on Close prices
               );     
    printf("ema Handle: %d", ema20Handle);
    return(INIT_SUCCEEDED);
