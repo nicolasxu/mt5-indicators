@@ -33,7 +33,6 @@ int OnInit() {
    SetIndexBuffer(0,indicatorDataBuffer,INDICATOR_DATA);
    SetIndexBuffer(1,indicatorColorBuffer,INDICATOR_COLOR_INDEX);  
    
-
    ema20Handle = iMA(  NULL,    // symbol string
                           0,    // timeframe
                          20,    // ma period
